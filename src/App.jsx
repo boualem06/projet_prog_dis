@@ -23,6 +23,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CarList from './CarList';
 import UpdateCar from './UpdateCar';
+import CarRegistrationForm from './CarRegistrationForm.jsx'
+import "./App.css"
+
 
 function App() {
   return (
@@ -30,6 +33,7 @@ function App() {
       <Routes>
         <Route path="/" element={<CarList />} />
         <Route path="/update/:model" element={<UpdateCar />} />
+        <Route path="/newcar" element={<CarRegistrationForm />} />
       </Routes>
     </Router>
   );

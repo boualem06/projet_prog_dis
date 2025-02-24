@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './CarRegistrationForm.css';
 
 function CarRegistrationForm() {
   const [formData, setFormData] = useState({
@@ -11,14 +12,23 @@ function CarRegistrationForm() {
     seats: '',
     doors: '',
     price: '',
-    status: ''
+    status: '',
+    image: null,  // New field for storing the uploaded image
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
+    });
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setFormData({
+      ...formData,
+      image: file,
     });
   };
 
@@ -27,6 +37,8 @@ function CarRegistrationForm() {
     // Handle the submission logic here (e.g., send the data to a server)
     console.log('Car registered:', formData);
   };
+
+  const imagePreview = formData.image ? URL.createObjectURL(formData.image) : null;
 
   return (
     <div className="form-container">
@@ -128,6 +140,21 @@ function CarRegistrationForm() {
             <option value="rented">Rented</option>
             <option value="none">None</option>
           </select>
+        </div>
+
+        {/* Image upload field */}
+        <div className="form-group">
+          <label>Car Image:</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+          {imagePreview && (
+            <div className="image-preview-container">
+              <img src={imagePreview} alt="Car Preview" className="image-preview" />
+            </div>
+          )}
         </div>
 
         <button type="submit" className="submit-btn">Register Car</button>

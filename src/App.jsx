@@ -24,17 +24,22 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CarList from './CarList';
 import UpdateCar from './UpdateCar';
 import CarRegistrationForm from './CarRegistrationForm.jsx'
-import "./App.css"
+import Navbar from './Navbar';
+
 
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<CarList />} />
-        <Route path="/update/:model" element={<UpdateCar />} />
-        <Route path="/newcar" element={<CarRegistrationForm />} />
-      </Routes>
+       <Navbar />
+        <div className="content">
+          <Routes>
+              <Route path="/" element={<CarList />} />
+              <Route path="/update/:model" element={<UpdateCar />} />
+              <Route path="/newcar" element={<CarRegistrationForm />} />
+          </Routes>
+        </div>
+    
     </Router>
   );
 }

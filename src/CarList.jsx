@@ -18,7 +18,7 @@ const CarList = () => {
       { make: 'Ford', model: 'Mustang', price: 35000, status: 'Available', image: '/car.jpg',year:2020,color:"red", fuelType:"Petrol",transmission:"Manual",seats:4,doors:4},
       { make: 'Ford', model: 'Mustang', price: 35000, status: 'Available', image: '/car.jpg',year:2020,color:"red", fuelType:"Petrol",transmission:"Manual",seats:4,doors:4},
       { make: 'Ford', model: 'Mustang', price: 35000, status: 'Available', image: '/car.jpg',year:2020,color:"red", fuelType:"Petrol",transmission:"Manual",seats:4,doors:4},
-      { make: 'Ford', model: 'Mustang', price: 35000, status: 'Available', image: '/car.jpg',year:2020,color:"red", fuelType:"Petrol",transmission:"Manual",seats:4,doors:4},
+      { make: 'Ford', model: 'Mustang', price: 35000, status: 'Rented', image: '/car.jpg',year:2025,color:"red", fuelType:"Petrol",transmission:"Manual",seats:4,doors:4},
 
     ];
     setCars(mockCars);

@@ -96,11 +96,29 @@ const CarList = () => {
     navigate(`/update/${car.model}`, { state: car });
   };
 
-  const handleDelete = (car) => {
+  const handleDelete = async (car) => {
     if (window.confirm(`Are you sure you want to delete the ${car.make} ${car.model}?`)) {
-      setCars(cars.filter((c) => c._id !== car._id)); // Use car._id for unique deletion
+      try {
+        // Sending DELETE request to the backend
+        const response = await fetch(`http://localhost:5000/cars/${car._id}`, {
+          method: 'DELETE',
+        });
+  
+        if (response.ok) {
+          // If successful, remove the car from the list in the frontend
+          setCars(cars.filter((c) => c._id !== car._id));
+          alert("Car deleted successfully");
+        } else {
+          const result = await response.json();
+          alert(`Error: ${result.error}`);
+        }
+      } catch (error) {
+        console.error("Error deleting car:", error);
+        alert("Failed to delete the car");
+      }
     }
   };
+  
 
   useEffect(() => {
     fetchCars(); // Fetch car data when the component mounts

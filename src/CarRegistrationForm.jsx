@@ -175,7 +175,7 @@ function CarRegistrationForm() {
           <select name="status" value={formData.status} onChange={handleChange}>
             <option value="">Select Status</option>
             <option value="rented">Rented</option>
-            <option value="none">None</option>
+            <option value="available">None</option>
           </select>
         </div>
 

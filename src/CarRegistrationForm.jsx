@@ -32,11 +32,48 @@ function CarRegistrationForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle the submission logic here (e.g., send the data to a server)
-    console.log('Car registered:', formData);
+  
+    // Create a new FormData object (renamed to avoid conflict)
+    const newFormData = new FormData();
+  
+    // Append car details to FormData
+    newFormData.append('make', formData.make);
+    newFormData.append('model', formData.model);
+    newFormData.append('year', formData.year);
+    newFormData.append('color', formData.color);
+    newFormData.append('fuelType', formData.fuelType);
+    newFormData.append('transmission', formData.transmission);
+    newFormData.append('seats', formData.seats);
+    newFormData.append('doors', formData.doors);
+    newFormData.append('price', formData.price);
+    newFormData.append('status', formData.status);
+  
+    // Append the image to FormData
+    if (formData.image) {
+      newFormData.append('image', formData.image);
+    }
+  
+    // Send the FormData to the backend (POST request)
+    try {
+      const response = await fetch('http://localhost:5000/cars', {
+        method: 'POST',
+        body: newFormData,
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        console.log('Car registered:', result);
+        // You can reset the form or show a success message here
+      } else {
+        console.log('Error:', result.error);
+      }
+    } catch (error) {
+      console.error('Error during submission:', error);
+    }
   };
+  
 
   const imagePreview = formData.image ? URL.createObjectURL(formData.image) : null;
 

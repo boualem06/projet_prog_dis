@@ -15,13 +15,33 @@ const UpdateCar = () => {
     }));
   };
 
-  const handleUpdateCar = (e) => {
+  const handleUpdateCar = async (e) => {
     e.preventDefault();
-    // Here, you would typically update the car in a global state or API call
-    console.log('Updated car:', car);
-    // Navigate back to the car list page after update
-    navigate('/');
+
+    // Send PUT request to update the car data on the server
+    try {
+      const response = await fetch(`http://localhost:5000/cars/${car._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(car),
+      });
+
+      if (response.ok) {
+        const updatedCar = await response.json();
+        alert('Car updated successfully');
+        navigate('/');  // Navigate back to the car list page after update
+      } else {
+        const result = await response.json();
+        alert(`Error: ${result.error}`);
+      }
+    } catch (error) {
+      console.error('Error updating car:', error);
+      alert('Failed to update the car');
+    }
   };
+
 
   return (
     <div className="update-car-container">

@@ -64,6 +64,7 @@ function CarRegistrationForm() {
   
       const result = await response.json();
       if (response.ok) {
+        alert('Car registred successfully');
         console.log('Car registered:', result);
         // You can reset the form or show a success message here
       } else {

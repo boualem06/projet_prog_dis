@@ -83,12 +83,12 @@ function CarRegistrationForm() {
       <form onSubmit={handleSubmit} className="car-form">
         <div className="form-group">
           <label>Make:</label>
-          <select name="make" value={formData.make} onChange={handleChange}>
-            <option value="">Select Make</option>
-            <option value="ford">Ford</option>
-            <option value="toyota">Toyota</option>
-            <option value="mercedes">Mercedes</option>
-          </select>
+          <input
+            type="text"
+            name="make"
+            value={formData.make}
+            onChange={handleChange}
+          />
         </div>
 
         <div className="form-group">
@@ -174,8 +174,8 @@ function CarRegistrationForm() {
           <label>Status:</label>
           <select name="status" value={formData.status} onChange={handleChange}>
             <option value="">Select Status</option>
-            <option value="rented">Rented</option>
-            <option value="available">None</option>
+            <option value="rented">rented</option>
+            <option value="available">available</option>
           </select>
         </div>
 
